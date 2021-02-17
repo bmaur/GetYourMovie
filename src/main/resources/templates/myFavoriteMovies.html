@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+<header th:replace="fragments/headerUser">
+</header>
+
+<body>
+<div th:if="${#lists.isEmpty(myFav)}" style="font-family: Corbel">
+    <div class="row justify-content-md-left" style="margin-top: 15px">
+        <div class="col-lg-8 mb-4">
+            <h1> &nbsp&nbsp &nbsp&nbsp &nbsp&nbsp &nbsp&nbsp &nbsp&nbsp &nbsp&nbsp &nbsp&nbsp &nbsp&nbsp &nbsp
+                Favorite movies</h1>
+
+            <h2><p>
+                &nbsp&nbsp &nbsp&nbsp &nbsp&nbsp &nbsp&nbsp &nbsp&nbsp &nbsp&nbsp &nbsp&nbsp &nbsp&nbsp &nbsp&nbsp
+                &nbsp&nbsp &nbsp&nbsp
+                There are no favorite movies.</p></h2>
+        </div>
+    </div>
+</div>
+<div class="row justify-content-md-center" style="margin-top: 15px" th:unless="${#lists.isEmpty(myFav)}">
+    <h2 style="font-family: Corbel">Your favorite movies: </h2>
+
+    <table class="table table-borderless">
+
+        <tbody th:each="myFavoriteMovies :${myFav}">
+        <tr>
+            <td>
+                <div class="container">
+                    <div class="row text-center">
+                        <div class="col-xs-6 .col-md-4">
+                            <div th:if="${myFavoriteMovies.posterURL eq 'N/A'}">
+                                <form th:action="@{/movie/details/{imdb} (imdb=${myFavoriteMovies.getImdbID()})}"
+                                      method="get">
+                                    <button type="submit"><img th:src="@{/img/notfound.png}"></button>
+                                </form>
+                            </div>
+                            <div th:unless="${myFavoriteMovies.posterURL eq 'N/A'}">
+                                <form th:action="@{/movie/details/{imdb} (imdb=${myFavoriteMovies.getImdbID()})}"
+                                      method="get">
+                                    <button type="submit"><img th:src="@{${myFavoriteMovies.posterURL}}"></button>
+                                </form>
+                            </div>
+
+                        </div>
+                        <div class="col-xs-6 .col-md-4" style="font-family: Corbel ">
+                            <h3 class="text-left" style="text-transform: uppercase; color: #062c33"> &nbsp <a
+                                    th:text="${myFavoriteMovies.type}"></a></h3>
+
+                            <h3 class="text-left">
+                                &nbsp&nbsp
+                                <form th:action="@{/movie/details/{imdb} (imdb=${myFavoriteMovies.getImdbID()})}"
+                                      method="get">
+                                    <button type="submit" style="border: none"
+                                            th:text="${myFavoriteMovies.title}"></button>
+                                </form>
+                            </h3>
+                            <h4 class="text-left"> &nbsp&nbsp Production year: <a
+                                    th:text="${myFavoriteMovies.year}"></a>
+                            </h4>
+
+                        </div>
+                    </div>
+                </div>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+
+<nav class="row justify-content-center">
+
+    <ul class="pagination">
+
+        <tr th:each="pageIndicator :${pages}">
+            <li>
+                <button type="submit" class="btn btn-outline-secondary" th:form="${pageIndicator}">
+                    <a>
+                        <td th:text="${pageIndicator}"/>
+                    </a>
+                </button>
+                <form th:id="${pageIndicator}" th:action="@{/myFavoriteMovies}" method="get">
+                    <input type="hidden" name="page" th:value="${pageIndicator}"/>
+                    <input type="hidden" name="page" th:value="${user}"/>
+                    </a>
+                </form>
+            </li>
+        </tr>
+
+    </ul>
+</nav>
+
+
+<footer th:if="${#lists.isEmpty(myFav)}" class="py-5 bg-dark" style="position: absolute; bottom: 0; width: 100%">
+    <div class="container">
+        <p class="m-0 text-center text-white">
+            Copyright &copy; GetYourMovie.com
+            <span sec:authorize="isAuthenticated()" style="display: inline-block;">
+                    | Logged user: <span sec:authentication="name"></span> |
+                    <a th:href="@{/logout}">Sign Out</a>
+                </span>
+        </p>
+    </div>
+
+</footer>
+<footer th:unless="${#lists.isEmpty(myFav)}" class="py-5 bg-dark" style=" bottom: 0; width: 100%">
+    <div class="container">
+        <p class="m-0 text-center text-white">
+            Copyright &copy; GetYourMovie
+            <span sec:authorize="isAuthenticated()" style="display: inline-block;">
+                    | Logged user: <span sec:authentication="name"></span> |
+                    <a th:href="@{/logout}">Sign Out</a>
+                </span>
+        </p>
+    </div>
+
+</footer>
+
+<script src="@{../static/css/vendor/jquery/jquery.min.js}"
+        th:src="@{/css/vendor/jquery/jquery.min.js}"></script>
+<script src="@{../static/css/vendor/js/bootstrap.bundle.min.js}"
+        th:src="@{/css/vendor/js/bootstrap.bundle.min.js}"></script>
+
+</body>
+
+

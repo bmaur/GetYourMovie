@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+
+<header th:replace="fragments/headerUser">
+</header>
+
+<body>
+
+<div class="container">
+    &nbsp&nbsp
+    <h1 style="font-family: Corbel">Account information</h1>
+
+    <div class="container" style="font-family: Corbel ">
+        <div class="row justify-content-md-left" style="margin-top: 15px">
+            <div class="col-lg-8 mb-4">
+
+                <ul th:each="accountInfo :${accountInfo}" style="color: #1b1e21">
+                    <h4>
+                        <li>
+                            User Name : <a th:text="${accountInfo.getUsername()}"></a>
+                        </li>
+                    </h4>
+
+                    <h4>
+                        <li>
+                            User Nick : <a th:text="${accountInfo.getUserNick()}"></a> <br>
+                            To change the nickname click <a th:href="@{/userNickReset}">here</a>
+                        </li>
+                    </h4>
+                    <h4>
+                        <li>
+                            User Password : ************ <br>
+                            To change the password click <a th:href="@{/reset}">here</a>
+                        </li>
+                    </h4>
+                    <h4>
+                        <li s>
+                            Account creation date: <a th:text="${accountInfo.getCreatedOn()}"></a>
+
+                        </li>
+                    </h4>
+                </ul>
+
+
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<footer class="py-5 bg-dark" style="position: absolute; bottom: 0; width: 100%">
+    <div class="container">
+        <p class="m-0 text-center text-white">
+            Copyright &copy; GetYourMovie
+            <span sec:authorize="isAuthenticated()" style="display: inline-block;">
+                    | Logged user: <span sec:authentication="name"></span> |
+                    <a th:href="@{/logout}">Sign Out</a>
+                </span>
+        </p>
+    </div>
+
+</footer>
+<script src="@{../static/css/vendor/jquery/jquery.min.js}" th:src="@{/css/vendor/jquery/jquery.min.js}"></script>
+<script src="@{../static/css/vendor/js/bootstrap.bundle.min.js}"
+        th:src="@{/css/vendor/js/bootstrap.bundle.min.js}"></script>
+</body>

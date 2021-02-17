@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+
+<header th:replace="fragments/headerUser">
+</header>
+<body>
+
+
+<h2 class="row justify-content-center" style="font-family: Corbel "> &nbsp Your search for "<a th:text="${title}"></a>":
+</h2>
+
+<table class="table table-borderless">
+
+    <tbody th:each="movieResponse :${movies}">
+    <tr>
+        <td>
+            <div class="container">
+                <div class="row text-center">
+                    <div class="col-xs-6 .col-md-4">
+                        <div th:if="${movieResponse.posterURL eq 'N/A'}">
+                            <form th:action="@{/movie/details/{imdb} (imdb=${movieResponse.getImdbID()})}"
+                                  method="get">
+                                <button type="submit"><img
+                                        th:src="@{https://res.cloudinary.com/dfyrju563/image/upload/v1612304993/notfound_y7wqyx.png}">
+                                </button>
+                            </form>
+                        </div>
+                        <div th:unless="${movieResponse.posterURL eq 'N/A'}">
+                            <form th:action="@{/movie/details/{imdb} (imdb=${movieResponse.getImdbID()})}"
+                                  method="get">
+                                <button type="submit"><img th:src="@{${movieResponse.posterURL}}"></button>
+                            </form>
+                        </div>
+
+                    </div>
+                    <div class="col-xs-6 .col-md-4" style="font-family: Corbel ">
+                        <h3 class="text-left" style="text-transform: uppercase; color: #062c33"> &nbsp <a
+                                th:text="${movieResponse.type}"></a></h3>
+
+                        <h3 class="text-left">
+                            &nbsp&nbsp
+                            <form th:action="@{/movie/details/{imdb} (imdb=${movieResponse.getImdbID()})}"
+                                  method="get">
+                                <button type="submit" style="border: none" th:text="${movieResponse.title}"></button>
+                            </form>
+                        </h3>
+                        <h4 class="text-left"> &nbsp&nbsp Production year: <a th:text="${movieResponse.year}"></a>
+                        </h4>
+
+                    </div>
+                </div>
+            </div>
+        </td>
+    </tr>
+    </tbody>
+</table>
+
+
+<nav class="row justify-content-center">
+
+    <ul class="pagination">
+        <tr th:each="pageIndicator :${pages}">
+            <li>
+                <button type="submit" class="btn btn-outline-secondary" th:form="${pageIndicator}">
+                    <a>
+                        <td th:text="${pageIndicator}"/>
+                    </a>
+                </button>
+                <form th:id="${pageIndicator}" th:action="@{/movies}" method="get">
+                    <input type="hidden" name="page" th:value="${pageIndicator}"/>
+                    <input type="hidden" name="title" th:value="${title}"/>
+                    </a>
+                </form>
+            </li>
+        </tr>
+
+    </ul>
+</nav>
+
+
+<footer class="py-5 bg-dark" style=" bottom: 0; width: 100%">
+    <div class="container">
+        <p class="m-0 text-center text-white">
+            Copyright &copy; GetYourMovie
+            <span sec:authorize="isAuthenticated()" style="display: inline-block;">
+                    | Logged user: <span sec:authentication="name"></span> |
+                    <a th:href="@{/logout}">Sign Out</a>
+                </span>
+        </p>
+    </div>
+
+</footer>
+
+
+<script src="@{../static/css/vendor/jquery/jquery.min.js}" th:src="@{/css/vendor/jquery/jquery.min.js}"></script>
+<script src="@{../static/css/vendor/js/bootstrap.bundle.min.js}"
+        th:src="@{/css/vendor/js/bootstrap.bundle.min.js}"></script>
+
+</body>
+</html>
+
+

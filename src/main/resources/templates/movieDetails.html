@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+
+<header th:replace="fragments/headerUser">
+</header>
+<body>
+
+
+<div th:each="movieDetails :${movieDetails}" style="font-family: Corbel ">
+    &nbsp&nbsp
+    <strong>
+        <h6 style="margin-left: 400px; text-transform: uppercase; "><p th:text="${movieDetails.type}"></p></h6>
+    </strong>
+    <h2 style="margin-left: 400px"><p th:text="${movieDetails.title}"></p>
+    </h2>
+    <h4 style="margin-left: 400px"><a th:text="${movieDetails.year}"></a></h4>
+
+    <table class="table table-borderless">
+
+        <tbody>
+        <tr>
+            <td>
+                <div class="container">
+                    <div class="row text-center">
+                        <div class="col-xs-6 col-sm-3-offset-2">
+                            <div th:if="${movieDetails.poster_url eq 'N/A'}">
+                                <img th:src="@{https://res.cloudinary.com/dfyrju563/image/upload/v1612304993/notfound_y7wqyx.png}">
+                            </div>
+                            <div th:unless="${movieDetails.poster_url eq 'N/A'}">
+
+                                <img th:src="@{${movieDetails.poster_url}}">
+                                </form>
+                            </div>
+                            <h4>
+                                <div th:each="ratings : ${movieDetails.ratings}">
+                                    <p><strong><span th:text="${ratings.source}"> Title</span></strong></p>
+                                    <p><span th:text="${ratings.value}"> Author </span></p>
+                                </div>
+                            </h4>
+
+                        </div>
+                        <div class="col-xs-9 col-md-7 text-left">
+                            <h3>
+                                <p th:text="${movieDetails.plot}"></p>
+
+                            </h3>
+                            <h4><strong>direction:</strong> &nbsp <a
+                                    th:text="${movieDetails.director}"></a>
+                            </h4>
+                            <h4><strong>screenplay:</strong>&nbsp <a
+                                    th:text="${movieDetails.writer}"><br></a>
+                            </h4>
+                            <h4><strong>genre:</strong>&nbsp <a
+                                    th:text="${movieDetails.genre}"></a>
+                            </h4>
+                            <h4><strong>production:</strong>&nbsp <a
+                                    th:text="${movieDetails.country}"></a>
+                            </h4>
+                            <h4><strong>premiere:</strong>&nbsp <a
+                                    th:text="${movieDetails.released}"></a>
+                            </h4>
+                            <h4><a
+                                    th:text="${movieDetails.awards}"></a>
+                            </h4>
+                            &nbsp
+                            <h4><strong> &nbsp CAST</strong>:
+                                <a
+                                        th:text="${movieDetails.actors}"></a>
+                            </h4>
+                            &nbsp
+                            <diV th:if="${movieDetails.MyFavoritesMovies == false}">
+                                <form th:action="@{/movie/details/{imdbId}/fav (imdbId=${movieDetails.getImdbId()})}"
+                                      method="post">
+                                    <div>
+                                        <input type="submit"
+                                               name="fav-submit"
+                                               id="fav-submit"
+                                               style="width:50%;"
+                                               class="btn btn-secondary"
+                                               value="Add to your favorites">
+                                    </div>
+                                </form>
+                            </div>
+                            <div class="text1" th:unless="${movieDetails.MyFavoritesMovies==false}">
+                                <h3>
+                                    This production is in your <a th:href="@{/myFavoriteMovies}">My Favorites</a> section </h3>
+                            </div>
+                            &nbsp
+                            <diV class="text1" th:if="${movieDetails.MyToWatchMovies ==false}">
+                                <form th:action="@{/movie/details/{imdbId}/towatch (imdbId=${movieDetails.getImdbId()})}"
+                                      method="get">
+                                    <div>
+                                        <input type="submit"
+                                               name="towach-submit"
+                                               id="towatch-submit"
+                                               style="width:50%;"
+                                               class="btn btn-secondary"
+                                               value="Add to your to watch">
+                                    </div>
+                                </form>
+                            </div>
+                            <div class="text1" th:unless="${movieDetails.MyToWatchMovies==false}">
+                                <h3>
+                                    This production is in your <a th:href="@{/myMoviesToWatch}">To Watch </a> section</h3>
+                            </div>
+                        </div>
+                        <div class="col-xs-6 text-left">
+                            <div th:if="${movieDetails.comments.isEmpty()}">
+                                &nbsp&nbsp&nbsp
+                                <h2> Comments: </h2>
+                                <h3>
+                                    <strong><span> There are no comments </span></strong>
+                                </h3>
+
+                            </div>
+                            <div th:unless="${movieDetails.comments.isEmpty()}">
+                                <h4>
+                                    &nbsp&nbsp&nbsp
+                                    <h2> Comments: </h2>
+                                    <ul th:each="comments : ${movieDetails.comments}">
+                                        <img style=" padding-right: 10px;"
+                                             th:src="@{https://res.cloudinary.com/dfyrju563/image/upload/v1612304993/photo4_ht7vi5.png}">
+                                        <strong><span th:text="${comments.userName}"> </span></strong>
+
+                                        <ul> # <span th:text="${comments.commentCreated}"></span></ul>
+                                        <ul> &ensp; <span th:text="${comments.text}"> </span></ul>
+                                    </ul>
+                                </h4>
+                            </div>
+                            <br><br>
+                            <div>
+                                <form th:action="@{/movie/details/{imdbId}/comment (imdbId=${movieDetails.getImdbId()})}"
+                                      method="post">
+                                    <div>
+                                                    <textarea maxlength="255"
+                                                              id="commentText"
+                                                              name="commentText"
+                                                              rows="6"
+                                                              cols="40"
+                                                              placeholder="Add comment..."></textarea>
+                                        <input
+                                                class="btn btn-secondary"
+                                                type="submit"
+                                                id="comment-submit"
+                                                style="width:50%;"
+                                                onclick="myfunction()"
+                                                value="Add">
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+<footer class="py-5 bg-dark" style=" bottom: 0; width: 100%">
+    <div class="container">
+        <p class="m-0 text-center text-white">
+            Copyright &copy; GetYourMovie
+            <span sec:authorize="isAuthenticated()" style="display: inline-block;">
+                    | Logged user: <span sec:authentication="name"></span> |
+                    <a th:href="@{/logout}">Sign Out</a>
+                </span>
+        </p>
+    </div>
+
+</footer>
+</body>
+</html>

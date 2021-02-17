@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+<header th:replace="fragments/headerAnonymous">
+</header>
+<body>
+
+
+<div class="container">
+
+    <div class="row justify-content-md-center" style="margin-top: 75px">
+        <div class="col-lg-8 mb-4">
+            <div class="text-center">
+                <h3 style="font-family: Corbel ">Log in to your GetYourMovie account</h3>
+            </div>
+
+            <form name="sentMessage" id="contactForm" novalidate th:action="@{/login}" method="post">
+                <div th:if="${param.error}">
+                    <div class="alert alert-danger">
+                        Invalid username or password.
+                    </div>
+                </div>
+                <div th:if="${param.logout}">
+                    <div class="alert alert-info">
+                        You have been logged out.
+                    </div>
+                </div>
+
+                <div class="control-group form-group">
+                    <div class="controls">
+                        <label>Username</label>
+                        <input type="text"
+                               id="username"
+                               name="username"
+                               class="form-control"
+                               autofocus="autofocus"
+                               placeholder="Username"
+                               required
+                               data-validation-required-message="Please enter your username.">
+                        <p class="help-block"></p>
+
+                    </div>
+                </div>
+                <div class="control-group form-group">
+                    <div class="controls">
+                        <label>Password</label>
+                        <input type="password"
+                               id="password"
+                               name="password"
+                               class="form-control"
+                               placeholder="Password"
+                               required
+                               data-validation-required-message="Please enter your password."
+                        >
+                    </div>
+                </div>
+                <div class="row justify-content-center">
+                    <button type="submit" class="btn btn-secondary" style="width:50%;" id="login">Log in</button>
+                </div>
+            </form>
+        </div>
+
+    </div>
+    <p><a href="/" th:href="@{/}" style="color: #1b1e21">Back to home page</a></p>
+
+    <p><a href="/" th:href="@{/forgotPassword}" style="color: #1b1e21">Forgot password</a></p>
+</div>
+
+</body>
+</html>

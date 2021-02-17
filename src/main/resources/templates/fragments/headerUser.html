@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>GetYourMovie</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="@{../static/css/vendor/bootstrap/css/bootstrap.css}" rel="stylesheet"
+          th:href="@{/css/vendor/bootstrap/css/bootstrap.css}"/>
+
+    <!-- Custom styles for this template -->
+    <link href="@{../static/css/modern-business.css}" rel="stylesheet"
+          th:href="@{/css/modern-business.css}"/>
+    <style>
+        h2, h4, h5, h6, p {
+            margin-bottom: 0px;
+            margin-top: 0px;
+
+        }
+
+        strong {
+            font-weight: 900;
+        }
+
+
+
+
+    </style>
+
+</head>
+<body>
+<th:block th:fragment="headerUser">
+    <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark fixed-top">
+        <div class="container">
+            <a class="navbar-brand" th:href="@{/home}">GetYourMovie</a>
+            <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse"
+                    data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false"
+                    aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <form class="collapse navbar-collapse" th:action="@{/movies}" method="get">
+                <i class="fas fa-search" aria-hidden="true"></i>
+                <input class="form-control form-control-md ml-3 w-75" type="text" id="title" name="title"
+                       placeholder="Search for movies and series"
+                       aria-label="Search">
+                <button type="submit" class="btn btn-secondary" style="width:30%;" id="result">Search</button>
+            </form>
+            <div class="collapse navbar-collapse" id="navbarResponsive">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" th:href="@{/myFavoriteMovies}">My favorites</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" th:href="@{/myMoviesToWatch}">To watch</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" th:href="@{/settings}">Settings</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+</th:block>
+
+</body>
+</html>

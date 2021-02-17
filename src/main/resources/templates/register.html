@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+<header th:replace="fragments/headerAnonymous">
+</header>
+
+
+<body>
+
+<div class="container">
+
+    <div class="row justify-content-md-center" style="margin-top: 75px">
+        <div class="col-lg-8 mb-4">
+            <div class="text-center">
+                <h3>Create your GetYourMovie account</h3>
+            </div>
+
+            <form name="sentMessage" id="contactForm" novalidate action="#" th:action="@{/register}"
+                  th:object="${userInput}" method="post">
+
+                <div class="control-group form-group">
+                    <div class="controls">
+                        <label>Username</label>
+                        <input type="text"
+                               id="username"
+                               th:field="*{userName}"
+                               class="form-control"
+                               autofocus="autofocus"
+                               placeholder="Username"
+                               required
+                               data-validation-required-message="Please enter your username.">
+                        <p class="help-block"></p>
+                        <span th:if="${#fields.hasErrors('userName')}" th:errors="*{userName}" -->
+                          th:style="'color:red'"></span>
+
+                    </div>
+                </div>
+                <div class="control-group form-group">
+                    <label for="userNick">User Nick</label>:
+                    <input type="text"
+                           id="userNick"
+                           name="userNick"
+                           class="form-control"
+                           autofocus="autofocus"
+                           placeholder="User nick"
+                           required
+                           data-validation-required-message="Please enter your user nick.">
+                    <p class="help-block"></p>
+                    <span th:if="${#fields.hasErrors('userNick')}" th:errors="*{userNick}"
+                          th:style="'color:red'"></span>
+
+                </div>
+                <div class="control-group form-group">
+                    <div class="controls">
+                        <label>Password</label>
+                        <input type="password"
+                               id="password"
+                               name="userPassword"
+                               class="form-control"
+                               placeholder="Password"
+                               required
+                               data-validation-required-message="Please enter your password."
+                        >
+                        <p class="help-block"></p>
+                        <span th:if="${#fields.hasErrors('userPassword')}" th:errors="*{userPassword}"
+                              th:style="'color:red'"></span>
+                    </div>
+                </div>
+
+                <div class="control-group form-group">
+                    <div class="controls">
+                        <label>Confirm Password</label>
+                        <input type="password"
+                               id="confirmPass"
+                               name="userPasswordConfirm"
+                               class="form-control"
+                               placeholder="Confirm Password"
+                               required
+                               data-validation-required-message="Please enter your confirm password."
+                        >
+                    </div>
+                </div>
+
+                <div class="row justify-content-center">
+                    <button type="submit" class="btn btn-secondary" style="width:50%;" id="register">Create new account
+                    </button>
+                </div>
+            </form>
+
+        </div>
+    </div>
+    <p><a href="/" th:href="@{/}" style="color: #1b1e21">Back to home page</a></p>
+</div>
+
+</body>
+</html>

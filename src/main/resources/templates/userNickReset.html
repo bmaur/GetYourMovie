@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+<header th:replace="fragments/headerUser">
+</header>
+
+<body>
+
+<div class="container">
+    &nbsp&nbsp
+    <h1 style="font-family: Corbel">User nick reset</h1>
+    <div class="row justify-content-md-center" style="margin-top: 75px">
+        <div class="col-lg-8 mb-4">
+            <div class="text-center">
+                <h3 style="font-family: Corbel ">Enter new user nick</h3>
+            </div>
+
+            <form name="sentMessage" id="contactForm" novalidate th:action="@{/userNickReset}"
+                  th:object="${userNickResetForm}"
+                  method="post">
+
+                <div class="control-group form-group">
+                    <div class="controls">
+                        <label>New user nick</label>
+                        <input type="text"
+                               id="userNick"
+                               th:field="*{userNick}"
+                               class="form-control"
+                               autofocus="autofocus"
+                               placeholder="New user nick"
+                               required
+                               data-validation-required-message="Please enter your new password.">
+                        <p class="help-block"></p>
+                        <span th:if="${#fields.hasErrors('userNick')}" th:errors="*{userNick}"
+                              th:style="'color:red'"></span>
+                    </div>
+                </div>
+
+                <div class="row justify-content-center">
+                    <button type="submit" class="btn btn-secondary" style="width:50%;">Save</button>
+                </div>
+            </form>
+        </div>
+
+    </div>
+</div>
+</body>
+</html>

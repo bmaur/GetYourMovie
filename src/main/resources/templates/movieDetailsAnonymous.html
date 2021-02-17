@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+>
+<header th:replace="fragments/headerAnonymous">
+</header>
+<body>
+
+
+<div th:each="movieDetails :${movieDetails}" style="font-family: Corbel ">
+    &nbsp&nbsp
+    <strong>
+        <h6 style="margin-left: 400px; text-transform: uppercase; "><p th:text="${movieDetails.type}"></p></h6>
+    </strong>
+    <h2 style="margin-left: 400px"><p th:text="${movieDetails.title}"></p>
+    </h2>
+    <h4 style="margin-left: 400px"><a th:text="${movieDetails.year}"><a/></h4>
+
+    <table class="table table-borderless">
+
+        <tbody>
+        <tr>
+            <td>
+                <div class="container">
+                    <div class="row text-center">
+                        <div class="col-xs-6 col-sm-3-offset-2">
+                            <div th:if="${movieDetails.poster_url eq 'N/A'}">
+                                <img th:src="@{https://res.cloudinary.com/dfyrju563/image/upload/v1612304993/notfound_y7wqyx.png}">
+                            </div>
+                            <div th:unless="${movieDetails.poster_url eq 'N/A'}">
+
+                                <img th:src="@{${movieDetails.poster_url}}">
+                                </form>
+                            </div>
+                            <h4>
+                                <div th:each="ratings : ${movieDetails.ratings}">
+                                    <p><strong><span th:text="${ratings.source}"> Title</span></strong></p>
+                                    <p><span th:text="${ratings.value}"> Author </span></p>
+                                </div>
+                            </h4>
+
+                        </div>
+                        <div class="col-xs-9 col-md-7 text-left">
+                            <h3>
+                                <p th:text="${movieDetails.plot}"></p>
+
+                            </h3>
+                            <h4><strong>direction:</strong> &nbsp <a
+                                    th:text="${movieDetails.director}"></a>
+                            </h4>
+                            <h4><strong>screenplay:</strong>&nbsp <a
+                                    th:text="${movieDetails.writer}"><br></a>
+                            </h4>
+                            <h4><strong>genre:</strong>&nbsp <a
+                                    th:text="${movieDetails.genre}"></a>
+                            </h4>
+                            <h4><strong>production:</strong>&nbsp <a
+                                    th:text="${movieDetails.country}"></a>
+                            </h4>
+                            <h4><strong>premiere:</strong>&nbsp <a
+                                    th:text="${movieDetails.released}"></a>
+                            </h4>
+                            <h4><a
+                                    th:text="${movieDetails.awards}"></a>
+                            </h4>
+                            &nbsp
+                            <h4><strong> &nbsp CAST</strong>:
+                                <a
+                                        th:text="${movieDetails.actors}"></a>
+                            </h4>
+
+                        </div>
+                        <div class="col-xs-6">
+                            &nbsp&nbsp&nbsp
+                            <h2> Comments: </h2>
+                            <h5>
+                                <a href="/login" th:href="@{/login}">Log in</a>
+                                to view and add a comment</h5>
+                        </div>
+
+                    </div>
+
+                </div>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+<footer class="py-5 bg-dark" style=" bottom: 0; width: 100%">
+    <div class="container">
+        <p class="m-0 text-center text-white"> Copyright &copy; GetYourMovie.com</p>
+    </div>
+
+</footer>
+</body>
+</html>

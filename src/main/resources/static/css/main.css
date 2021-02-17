@@ -1,0 +1,128 @@
+h1 {
+    color: #78ab46;
+    font-family: "Corbel Light";
+    font-weight: 900;
+}
+
+h3 {
+    color: darkred;
+    font-family: "Corbel Light";
+    font-weight: 900;
+}
+
+footer {
+    position: fixed;
+    height: 50px;
+    bottom: 0;
+    width: 100%;
+    background-color: #ccc
+}
+
+footer p {
+    padding: 15px;
+}
+
+.form-group {
+    margin-bottom: 10px;
+}
+
+.btn {
+    width: 150px;
+    color: #fff;
+    background-color: #007bff;
+    outline: none;
+    min-height: 35px;
+    font-weight: 400;
+    text-align: center;
+    cursor: pointer;
+    padding: 2px 2px;
+    font-size: 12px;
+    line-height: 1.5;
+    border-radius: .25rem;
+}
+
+.form-control1 {
+    width: 400px;
+    font-size: 13px;
+    font-weight: 400;
+    line-height: 1.5;
+    outline: none;
+    color: #495057;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid #ced4da;
+    border-radius: .25rem;
+    padding: 2px 2px;
+}
+
+* {
+    padding: 0;
+    margin: 0;
+}
+
+.iconDetails {
+    margin: 0 2%;
+    float: right;
+}
+
+.container2 {
+    width: 100%;
+    height: auto;
+    padding: 1%;
+}
+
+.text1 {
+    float: left;
+    width: 33.33%;
+    padding: 5px;
+}
+
+.text1 h2, .text1 p {
+    width: 100%;
+    float: left;
+    font-size: 20px;
+    font-weight: bold;
+    font-family: "Calibri Light"
+}
+
+.text1 p span {
+    color: black;
+}
+
+.row::after {
+    content: "";
+    clear: both;
+    display: table;
+}
+
+.comment {
+    font-size: 28px;
+    font-family: "Corbel Light";
+    font-weight: bolder;
+
+}
+
+.comment-data {
+    font-size: 16px;
+    font-family: "Corbel Light";
+}
+
+.comment-text {
+    font-size: 20px;
+    font-family: "Corbel Light";
+}
+
+.fav-button {
+    width: 250px;
+    color: #fff;
+    background-color: #78ab46;
+    outline: none;
+    min-height: 35px;
+    font-weight: 400;
+    text-align: center;
+    cursor: pointer;
+    padding: 2px 2px;
+    font-size: 12px;
+    line-height: 1.5;
+    border-radius: .25rem;
+}

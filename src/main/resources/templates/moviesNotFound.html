@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+<header th:replace="fragments/headerUser">
+</header>
+
+<body>
+
+
+<div class="container">
+    <h3>No results, please try again. </h3>
+</div>
+
+
+<footer class="py-5 bg-dark" style="position: absolute; bottom: 0; width: 100%">
+    <div class="container">
+        <p class="m-0 text-center text-white">
+            Copyright &copy; GetYourMovie
+            <span sec:authorize="isAuthenticated()" style="display: inline-block;">
+                    | Logged user: <span sec:authentication="name"></span> |
+                    <a th:href="@{/logout}">Sign Out</a>
+                </span>
+        </p>
+    </div>
+
+</footer>
+
+
+<script src="@{../static/css/vendor/jquery/jquery.min.js}" th:src="@{/css/vendor/jquery/jquery.min.js}"></script>
+<script src="@{../static/css/vendor/js/bootstrap.bundle.min.js}"
+        th:src="@{/css/vendor/js/bootstrap.bundle.min.js}"></script>
+
+</body>
+
+

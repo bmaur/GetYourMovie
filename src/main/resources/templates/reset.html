@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+<header th:replace="fragments/headerUser">
+</header>
+
+<body>
+
+<div class="container">
+    &nbsp&nbsp
+    <h1 style="font-family: Corbel">Password reset</h1>
+    <div class="row justify-content-md-center" style="margin-top: 75px">
+        <div class="col-lg-8 mb-4">
+            <div class="text-center">
+                <h3 style="font-family: Corbel ">Enter your
+                    old and new password</h3>
+            </div>
+
+            <form name="sentMessage" id="contactForm" novalidate th:action="@{/reset}" th:object="${userResetForm}"
+                  method="post">
+                <div class="control-group form-group">
+                    <div class="controls">
+                        <label>Old password</label>
+                        <input type="password"
+                               id="password"
+                               th:field="*{userPassword}"
+                               class="form-control"
+                               autofocus="autofocus"
+                               placeholder="Old password"
+                               required
+                               data-validation-required-message="Please enter your old password.">
+                        <p class="help-block"></p>
+                        <span th:if="${#fields.hasErrors('userPassword')}" th:errors="*{userPassword}"
+                              th:style="'color:red'"></span>
+
+                    </div>
+                </div>
+
+                <div class="control-group form-group">
+                    <div class="controls">
+                        <label>New password</label>
+                        <input type="password"
+                               id="confirmPassword"
+                               th:field="*{userPasswordConfirm}"
+                               class="form-control"
+                               autofocus="autofocus"
+                               placeholder="New password"
+                               required
+                               data-validation-required-message="Please enter your new password.">
+                        <p class="help-block"></p>
+                        <span th:if="${#fields.hasErrors('userPasswordConfirm')}" th:errors="*{userPasswordConfirm}"
+                              th:style="'color:red'"></span>
+                    </div>
+                </div>
+
+                <div class="row justify-content-center">
+                    <button type="submit" class="btn btn-secondary" style="width:50%;" id="login">Save</button>
+                </div>
+            </form>
+        </div>
+
+    </div>
+</div>
+</body>
+</html>
+
+

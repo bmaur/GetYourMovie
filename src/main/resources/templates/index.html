@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+<header th:replace="fragments/headerAnonymous">
+</header>
+<body>
+
+<div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+    <ol class="carousel-indicators">
+        <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+        <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+        <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+    </ol>
+    <div class="carousel-inner" role="listbox">
+        <div class="carousel-item active" style="background-image: url('https://wallpapercave.com/wp/9i1vkNf.jpg')">
+            <div class="carousel-caption d-none d-md-block">
+                <a href="http://filmweb-env.eba-r2xc5km2.eu-central-1.elasticbeanstalk.com/movie/details/tt0133093?">
+                    <h1 style="color:green">Check it!</h1>
+                </a>
+            </div>
+        </div>
+        <div class="carousel-item"
+             style="background-image: url('https://photoshopstar.com/media/2010/01/avatar_movie_wall1900x1200.jpg')">
+            <div class="carousel-caption d-none d-md-block">
+                <a href="http://filmweb-env.eba-r2xc5km2.eu-central-1.elasticbeanstalk.com/movie/details/tt0499549?">
+                    <h1 >Check it!</h1></a>
+            </div>
+        </div>
+        <div class="carousel-item" style="background-image: url('https://cdn.wallpapersafari.com/6/18/j3NYgL.jpg')">
+            <div class="carousel-caption d-none d-md-block">
+                <a href="http://filmweb-env.eba-r2xc5km2.eu-central-1.elasticbeanstalk.com/movie/details/tt0780504?">
+                    <h1>Check it!</h1></a>
+            </div>
+        </div>
+
+    </div>
+    <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="sr-only">Previous</span>
+    </a>
+    <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="sr-only">Next</span>
+    </a>
+</div>
+<div class="wrapper flex-grow-1"></div>
+
+<footer th:replace="fragments/footer">
+</footer>
+
+
+<script src="@{../static/css/vendor/jquery/jquery.min.js}" th:src="@{/css/vendor/jquery/jquery.min.js}"></script>
+<script src="@{../static/css/vendor/js/bootstrap.bundle.min.js}"
+        th:src="@{/css/vendor/js/bootstrap.bundle.min.js}"></script>
+
+</body>
+</html>
