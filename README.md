@@ -1,15 +1,16 @@
 # GetYourMovie- movie search service
 ##### Is a movie search service allows you to get basic information about the selected movie.
+####Page address and test account to log in
+* [Link to project](http://filmweb-env.eba-r2xc5km2.eu-central-1.elasticbeanstalk.com)
+* Test account : 
+  - Username: `testuser@mail.com`
+  - Password: `qwas1234`
 ##Table of contents
 * General info
 * Technologies
 * Features
-* Setup
-####Page address and test account to log in
-* [GetYourMovie](http://filmweb-env.eba-r2xc5km2.eu-central-1.elasticbeanstalk.com)
-* Test account : 
-  - Username: `testuser@mail.com`
-  - Password: `qwas1234`
+* Setup project on local machine
+
 
 ##General info
 ##### The website allows you to create an account, and this in turn allows you to add movies to the favorites section, to the movies to watch section and to add comments. Information about movies is taken from the OMDb API
